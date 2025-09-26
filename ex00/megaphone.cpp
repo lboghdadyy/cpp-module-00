@@ -10,9 +10,7 @@ int main(int ac, char *argv[])
     {
         str = argv[i];
         for(int j = 0; j < str.length(); j++)
-            std::cout<<(char)toupper(str[j]);
-        if (i + 1 != ac)
-            std::cout<<" ";
+            std::cout<<(char)std::toupper(str[j]);
     }
     std::cout<<std::endl;
     return (0);
