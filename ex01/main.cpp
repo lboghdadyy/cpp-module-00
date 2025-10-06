@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbaghdad <sbaghdad@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/21 10:24:21 by sbaghdad          #+#    #+#             */
-/*   Updated: 2025/10/06 18:17:00 by sbaghdad         ###   ########.fr       */
+/*   Created: 2025/10/06 17:27:46 by sbaghdad          #+#    #+#             */
+/*   Updated: 2025/10/06 18:16:32 by sbaghdad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "PhoneBook.hpp"
 
-void    PhoneBook::add_contact(Contact contact)
+int main(void)
 {
-    static int  index;
-    
-    if (index == 8)
-        index = 0;
-    Contacts[index] = contact;
+    PhoneBook phone();
+
+    while (1)
+    {
+        
+    }
 }

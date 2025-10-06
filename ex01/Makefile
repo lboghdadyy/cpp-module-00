@@ -1,10 +1,10 @@
 CC=c++ -Wall -Wextra -Werror -std=c++98
 
-SRC=megaphone.cpp
+SRC=Contact.cpp PhoneBook.cpp
 
 OBJ=$(SRC:.cpp=.o)
 
-NAME=megaphone
+NAME=PhoneBook
 
 RM=rm -rf
 
