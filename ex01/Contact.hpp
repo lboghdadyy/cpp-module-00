@@ -20,7 +20,8 @@ class Contact
 		std::string	LastName;
 		std::string	NickName;
 		std::string	PhoneNumber;
+		std::string DarkestSecret;
 	public:
 		void	annoce_it(void);
-		Contact(int i, std::string firstname, std::string lastname, std::string nickname, std::string phonenum);
+		void	set(int i, std::string firstname, std::string lastname, std::string nickname, std::string phonenum, std::string darkestsecrets);
 };

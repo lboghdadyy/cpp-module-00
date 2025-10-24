@@ -16,6 +16,9 @@ class PhoneBook
 {
     private:
         Contact Contacts[8];
+        int     count;
     public:
         void    add_contact(Contact contact);
+        void    call(void);
+        void    set_count(int index);
 };

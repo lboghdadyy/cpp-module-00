@@ -13,10 +13,21 @@
 # include "PhoneBook.hpp"
 
 void    PhoneBook::add_contact(Contact contact)
-{
-    static int  index;
-    
+{    
+    static int index;
     if (index == 8)
         index = 0;
     Contacts[index] = contact;
+}
+
+void    PhoneBook::call(void)
+{
+    std::cout << "this count" << this->count;
+    for (int k = 0; k < this->count; k++)
+        this->Contacts[k].annoce_it();
+}
+
+void    PhoneBook::set_count(int index)
+{
+    this->count = index;
 }

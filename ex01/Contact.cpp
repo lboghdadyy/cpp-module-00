@@ -1,87 +1,51 @@
 # include "Contact.hpp"
 
-void    Contact::annoce_it(void)
+void	printf_column(std::string string)
 {
-	int     index;
+	int	i;
 
-	std::cout<<"----------------------------------------------"<<std::endl;
-	std::cout<<"|Index     |First Name |Last Name |Nickname  |"<<std::endl;
-	std::cout<<"----------------------------------------------"<<std::endl;
-	std::cout<<"|"<< index << "|";
-	if (FirstName.size() > 10)
+	i = 0;
+	if (string.size() > 10)
 	{
 		for (int k = 0; k < 10; k++)
 		{
 			if (k < 7)
-				std::cout << FirstName[k];
+				std::cout << string[k];
 			else
 				std::cout << ".";
 		}
 	}
 	else
 	{
-		index = 0;
-		while (FirstName[index])
+		i = 0;
+		while (string[i])
 		{
-			std::cout << FirstName;
-			index++;
+			std::cout << string[i];
+			i++;
 		}
-		for (int j = index; j < 10; j++)
+		for (int j = i; j < 10; j++)
 			std::cout << " ";
 	}
-	std::cout << "|";
-	if (LastName.size() > 10)
-	{
-		for (int k = 0; k < 10; k++)
-		{
-			if (k < 7)
-				std::cout << LastName[k];
-			else
-				std::cout << ".";
-		}
-	}
-	else
-	{
-		index = 0;
-		while (LastName[index])
-		{
-			std::cout << LastName;
-			index++;
-		}
-		for (int j = index; j < 10; j++)
-			std::cout << " ";
-	}
-	std::cout << "|";
-	if (NickName.size() > 10)
-	{
-		for (int k = 0; k < 10; k++)
-		{
-			if (k < 7)
-				std::cout << NickName[k];
-			else
-				std::cout << ".";
-		}
-	}
-	else
-	{
-		index = 0;
-		while (NickName[index])
-		{
-			std::cout << NickName;
-			index++;
-		}
-		for (int j = index; j < 10; j++)
-			std::cout << " ";
-	}
-	std::cout << "|" <<std::endl;
-	std::cout<<"----------------------------------------------"<<std::endl;
+	std::cout << '|';
 }
 
-Contact::Contact(int i, std::string firstname, std::string lastname, std::string nickname, std::string phonenum)
+void	Contact::annoce_it(void)
+{
+	int	i;
+
+	i = 0;
+	std::cout<<"|"<< index << "         |";
+	printf_column(FirstName);
+	printf_column(LastName);
+	printf_column(NickName);
+}
+
+void	Contact::set(int i, std::string firstname, std::string lastname, std::string nickname, std::string phonenum, std::string darkestsecrets)
 {
 	this->index = i;
 	this->FirstName = firstname;
 	this->LastName = lastname;
 	this->NickName = nickname;
 	this->PhoneNumber = PhoneNumber;
+	this->DarkestSecret = darkestsecrets;
 }
