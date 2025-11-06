@@ -1,33 +1,45 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sbaghdad <sbaghdad@student.1337.ma>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/21 10:24:21 by sbaghdad          #+#    #+#             */
-/*   Updated: 2025/10/06 18:17:00 by sbaghdad         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 # include "PhoneBook.hpp"
 
-void    PhoneBook::add_contact(Contact contact)
-{    
-    static int index;
-    if (index == 8)
-        index = 0;
-    Contacts[index] = contact;
+void    PhoneBook::set_count(const int set)
+{
+    this->count = set;
 }
 
-void    PhoneBook::call(void)
+void    PhoneBook::AddContact(const Contact contact, int index)
 {
-    std::cout << "this count" << this->count;
-    for (int k = 0; k < this->count; k++)
-        this->Contacts[k].annoce_it();
+    this->contacts[index] = contact;
 }
 
-void    PhoneBook::set_count(int index)
+void    PhoneBook::announce()
 {
-    this->count = index;
+    for (int j = 0; j < 45; j++)
+        std::cout<<"-";
+    std::cout << std::endl;
+    std::cout << "|";
+    PrintString("index");
+    std::cout << "|";
+    PrintString("first name");
+    std::cout << "|";
+    PrintString("last name");
+    std::cout << "|";
+    PrintString("nickname");
+    std::cout << "|";
+    std::cout << std::endl;
+    for (int j = 0; j < 45; j++)
+        std::cout<<"-";
+    std::cout << std::endl;
+    for (int j = 0; j < this->count; j++)
+    {
+        this->contacts[j].Announce();
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+    for (int j = 0; j < 45; j++)
+        std::cout<<"-";
+    std::cout << std::endl;
+}
+
+void    PhoneBook::GetInfo(int index)
+{
+    this->contacts[index].FullDetails();
 }

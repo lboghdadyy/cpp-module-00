@@ -1,72 +1,120 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sbaghdad <sbaghdad@student.1337.ma>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 17:27:46 by sbaghdad          #+#    #+#             */
-/*   Updated: 2025/10/06 18:16:32 by sbaghdad         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+# include "PhoneBook.hpp"    
 
-# include "PhoneBook.hpp"
-
-// void	add_contact(PhoneBook phonebook);
-
-int main(void)
+void	DisplayReq(const std::string str)
 {
-    PhoneBook	phonebook;
-	int			index;
-	bool		fixed = false;
+	std::cout << "Enter your " << str << std::endl;
+}
+
+int	 CheckString(const std::string str)
+{
+	size_t	len;
+
+	len = str.length();
+	for (size_t k = 0; k < len; k++)
+	{
+		if (!std::isprint(str[k]))
+			return (1);
+	}
+	if (str.empty())
+		return (1);
+	return (0);
+}
+
+void	ReadIpnut()
+{
+	PhoneBook	phonebook;
+	Contact		contact;
 	std::string	FirstName;
 	std::string	LastName;
 	std::string	NickName;
 	std::string	PhoneNumber;
-	std::string	DarkestSecret;
+	std::string	DarkestSecrets;
+	int			index;
+	int			i_inp;
+	bool		set;
 	std::string	input;
-
+ 
 	index = 0;
+	set = true;
 	phonebook.set_count(index);
-	std::cout << "Welcome to my awesome phonebook :)" << std::endl;
-    while (1)
-    {
-		std::cout << "please enter one of these commands : ADD, SEARCH or EXIT. (MAN for guideness)" << std::endl;
-		std::cin >> input;
+	while (1)
+	{
+		std::cout << "ADD, SEARCH or EXIT\n";
+		std::getline(std::cin, input);
 		if (input == "EXIT")
-			return (0);
-		if (input == "ADD")
+			return ;
+		else if (input == "ADD")
 		{
-			std::cout << "please enter the first name : ";
-			std::cin >> FirstName;
-			std::cout << std::endl << "please enter the last name : ";
-			std::cin >> LastName;
-			std::cout << std::endl << "please enter the Nickname : ";
-			std::cin >> NickName;
-			std::cout << std::endl << "please enter his number : ";
-			std::cin >> PhoneNumber;
-			std::cout << std::endl << "please enter his darkest secrets : ";
-			std::cin >> DarkestSecret;
-			Contact		contact;
-			contact.set(index, FirstName, LastName, NickName, PhoneNumber, DarkestSecret);
-			phonebook.add_contact(contact);
-			if (!fixed)
-				phonebook.set_count(index);
-			index++;
+			std::cout << "here\n";
+			DisplayReq("first name");
+			std::getline(std::cin, FirstName);
+			if (CheckString(FirstName))
+			{
+				std :: cout << "Invalid input\n";
+				continue;
+			}
+			DisplayReq("last name");
+			std::getline(std::cin, LastName);
+			if (CheckString(LastName))
+			{
+				std :: cout << "Invalid input\n";
+				continue;
+			}
+			DisplayReq("nickname");
+			std::getline(std::cin, NickName);
+			if (CheckString(NickName))
+			{
+				std :: cout << "Invalid input\n";
+				continue;
+			}
+			DisplayReq("Phonenumber");
+			std::getline(std::cin, PhoneNumber);
+			if (CheckString(PhoneNumber))
+			{
+				std :: cout << "Invalid input\n";
+				continue;
+			}
+			DisplayReq("darkests secrets");
+			std::getline(std::cin, DarkestSecrets);
+			if (CheckString(DarkestSecrets))
+			{
+				std :: cout << "Invalid input\n";
+				continue;
+			}
 			if (index == 8)
 			{
-				fixed = true;
 				index = 0;
+				set = false;
 			}
+			contact.AssignIt(index, FirstName, LastName, NickName, PhoneNumber, DarkestSecrets);
+			phonebook.AddContact(contact, index);
+			index++;
+			if (set)
+				phonebook.set_count(index);
 		}
-		if (input == "SEARCH")
+		else if (input == "SEARCH")
 		{
-			std::cout<<"----------------------------------------------"<<std::endl;
-			std::cout<<"|Index     |First Name |Last Name |Nickname  |"<<std::endl;
-			std::cout<<"----------------------------------------------"<<std::endl;
-			phonebook.call();
-			std::cout<< std::endl <<"----------------------------------------------"<<std::endl;
+			phonebook.announce();
+			std::cout << "Please enter index of the contact" << std::endl;
+			std::cin >> i_inp;
+			if (i_inp > 7 || i_inp < 0)
+			{
+				std::cout << "invalid index\n";
+				continue;
+			}
+			phonebook.GetInfo(i_inp);
 		}
-    }
-	return (0);
+		else if (input.empty())
+		{
+			if (!std::getline(std::cin, input))
+				break ;
+			continue ;
+		}
+	}
+}
+
+int main(void)
+{
+	std::cout << "Hello to my awesome PhoneBook\n";
+	ReadIpnut();
 }

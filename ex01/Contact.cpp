@@ -1,51 +1,55 @@
 # include "Contact.hpp"
 
-void	printf_column(std::string string)
+void    PrintString(const std::string str)
 {
-	int	i;
+    int len;
 
-	i = 0;
-	if (string.size() > 10)
-	{
-		for (int k = 0; k < 10; k++)
-		{
-			if (k < 7)
-				std::cout << string[k];
-			else
-				std::cout << ".";
-		}
-	}
-	else
-	{
-		i = 0;
-		while (string[i])
-		{
-			std::cout << string[i];
-			i++;
-		}
-		for (int j = i; j < 10; j++)
-			std::cout << " ";
-	}
-	std::cout << '|';
+    len = str.length();
+    if (len > 9)
+    {
+        std :: cout << str.substr(0, 9) << ".";
+    }
+    else
+    {
+        for (int h = 0;  h < 10 - len; h++)
+            std::cout << " ";
+        std :: cout << str;
+    }
 }
 
-void	Contact::annoce_it(void)
+void    Print(const char str[], const std::string info)
 {
-	int	i;
-
-	i = 0;
-	std::cout<<"|"<< index << "         |";
-	printf_column(FirstName);
-	printf_column(LastName);
-	printf_column(NickName);
+    std :: cout << str << " : " << info << std::endl;
 }
 
-void	Contact::set(int i, std::string firstname, std::string lastname, std::string nickname, std::string phonenum, std::string darkestsecrets)
+void    Contact::Announce(void)
 {
-	this->index = i;
-	this->FirstName = firstname;
-	this->LastName = lastname;
-	this->NickName = nickname;
-	this->PhoneNumber = PhoneNumber;
-	this->DarkestSecret = darkestsecrets;
+    std :: cout << "|`" << index << "|";
+    PrintString(this->FirstName);
+    std :: cout << "|";
+    PrintString(this->LastName);
+    std :: cout << "|";
+    PrintString(this->NickName);
+    std :: cout << "|";
+}
+
+void    Contact::AssignIt(int index, const std::string firstname,const std::string lastname, \
+                const std::string nickname, const std::string phonenumber, \
+                const std::string darkestsecrets)
+{
+    this->FirstName = firstname;
+    this->LastName = lastname;
+    this->DarkestSecrets = darkestsecrets;
+    this->PhoneNumber = phonenumber;
+    this->index = index;
+    this->NickName = nickname;
+}
+
+void    Contact::FullDetails(void)
+{
+    Print("FirstName", this->FirstName);
+    Print("LastName", this->LastName);
+    Print("NickName", this->NickName);
+    Print("PhoneNumber", this->PhoneNumber);
+    Print("Darkests Secrets", this->DarkestSecrets);
 }

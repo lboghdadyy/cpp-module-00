@@ -1,25 +1,25 @@
-CC=c++ -Wall -Wextra -Werror -std=c++98
+SRC=main.cpp PhoneBook.cpp Contact.cpp
 
-SRC=Contact.cpp PhoneBook.cpp main.cpp
-
-OBJ=$(SRC:.cpp=.o)
+CXX=c++ -Wall -Werror -Wextra -std=c++98
 
 NAME=PhoneBook
 
 RM=rm -rf
 
-$(NAME) : $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
-
-%.o : %.c Makefile
-	$(CC) -c $< -o $@
+OBJ=$(SRC:.cpp=.o)
 
 all : $(NAME)
 
-clean :
+$(NAME) : $(OBJ)
+	$(CXX) $(OBJ) -o $(NAME)
+
+%.o : %.cpp PhoneBook.hpp
+	$(CXX) -c $< -o $@
+
+clean : 
 	$(RM) $(OBJ)
 
 fclean : clean
 	$(RM) $(NAME)
- 
+
 re : fclean all
