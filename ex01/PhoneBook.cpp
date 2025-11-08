@@ -5,6 +5,11 @@ void    PhoneBook::set_count(const int set)
     this->count = set;
 }
 
+int    PhoneBook::get_count()
+{
+    return (this->count);
+}
+
 void    PhoneBook::AddContact(const Contact contact, int index)
 {
     this->contacts[index] = contact;
@@ -33,7 +38,6 @@ void    PhoneBook::announce()
         this->contacts[j].Announce();
         std::cout << std::endl;
     }
-    std::cout << std::endl;
     for (int j = 0; j < 45; j++)
         std::cout<<"-";
     std::cout << std::endl;

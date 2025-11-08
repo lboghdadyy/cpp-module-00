@@ -10,11 +10,7 @@ void    PrintString(const std::string str)
         std :: cout << str.substr(0, 9) << ".";
     }
     else
-    {
-        for (int h = 0;  h < 10 - len; h++)
-            std::cout << " ";
-        std :: cout << str;
-    }
+        std :: cout <<  std::setw(10) << str ;
 }
 
 void    Print(const char str[], const std::string info)
@@ -24,7 +20,7 @@ void    Print(const char str[], const std::string info)
 
 void    Contact::Announce(void)
 {
-    std :: cout << "|`" << index << "|";
+    std :: cout << "|" << std::setw(10) << index << "|";
     PrintString(this->FirstName);
     std :: cout << "|";
     PrintString(this->LastName);

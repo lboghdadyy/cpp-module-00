@@ -1,4 +1,4 @@
-CC=c++ -Wall -Wextra -Werror -std=c++98
+CXX=c++ -Wall -Wextra -Werror -std=c++98
 
 SRC=megaphone.cpp
 
@@ -9,10 +9,10 @@ NAME=megaphone
 RM=rm -rf
 
 $(NAME) : $(OBJ)
-	$(CC) $< -o $@ 
+	$(CXX) $< -o $@ 
 
 %.o : %.c Makefile
-	$(CC) -c $< -o $@
+	$(CXX) -c $< -o $@
 
 all : $(NAME)
 
