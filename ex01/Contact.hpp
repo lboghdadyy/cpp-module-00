@@ -20,3 +20,5 @@ class   Contact
 };
 
 void    PrintString(const std::string str);
+int		asciitoint(const std::string string);
+void	DisplayReq(const std::string str);

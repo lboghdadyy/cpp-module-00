@@ -11,5 +11,6 @@ class PhoneBook
 		void	announce(void);
 		void	AddContact(const Contact contact, int index);
 		void	GetInfo(int index);
+		void	SearchFT();
 };
 

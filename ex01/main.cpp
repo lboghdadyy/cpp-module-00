@@ -5,6 +5,19 @@ void	DisplayReq(const std::string str)
 	std::cout << "Enter your " << str << std::endl;
 }
 
+int CheckSpaces(const std::string string)
+{
+	size_t len;
+
+	len = string.size();
+	for (size_t index = 0; index < len; index++)
+	{
+		if (!std::isspace(string[index]))
+				return (0);
+	}
+	return (1);
+}
+
 int	 CheckString(const std::string str, const std::string type)
 {
 	size_t		len;
@@ -13,10 +26,12 @@ int	 CheckString(const std::string str, const std::string type)
 	for (size_t k = 0; k < len; k++)
 	{
 		if (!std::isprint(str[k]))
-			return (std :: cout << "Invalid input, please try again", 1);
+			return (std :: cout << "Invalid input, please try again\n", 1);
 		if (type == "Phonenumber" && !std::isdigit(str[k]))
 			return (std :: cout << "Phonenumber contains only digit\n", 1);
 	}
+	if (CheckSpaces(str))
+		return (std :: cout << "Only spaces input is invalid\n", 1);
 	if (str.empty())
 		return (1);
 	return (0);
@@ -29,27 +44,7 @@ int		asciitoint(const std::string string)
 	return (string[0] - '0');
 }
 
-void	SearchFT(PhoneBook phonebook)
-{
-	int			input_i;
-	std::string input;
 
-	if (phonebook.get_count() == -1)
-	{
-		std::cout << "No contact yet !!!\n";
-		return ;
-	}
-	phonebook.announce();
-	DisplayReq("Select index : ");
-	std::getline(std::cin, input);
-	input_i = asciitoint(input);
-	if (input_i > 7 || input_i < 0)
-	{
-		std::cout << "invalid index\n";
-		return ;
-	}
-	phonebook.GetInfo(input_i);
-}
 
 std::string	ReqString(const std::string type)
 {
@@ -60,15 +55,15 @@ std::string	ReqString(const std::string type)
 		return ("");
 	while (CheckString(string, type))
 	{
+		std :: cout << "Please reenter your " << type << std::endl;
 		if(!std::getline(std::cin, string))
 			return ("");
 	}
 	return (string);
 }
 
-void	ReadIpnut()
+void	ReadIpnut(PhoneBook phonebook)
 {
-	PhoneBook	phonebook;
 	Contact		contact;
 	std::string	FirstName;
 	std::string	LastName;
@@ -85,21 +80,17 @@ void	ReadIpnut()
 	while (1)
 	{
 		DisplayReq("select commnad between : ADD, SEARCH or EXIT");
-		if(!std::getline(std::cin, input))
+		if (!std::getline(std::cin, input))
 			break ;
 		if (input == "EXIT")
 			return ;
 		else if (input == "ADD")
 		{
-			DisplayReq("Firstname");
-			std::getline(std::cin, FirstName);
-			if (CheckString(FirstName, "Firstname"))
-				continue ;
+			FirstName = ReqString("Firstname");
 			LastName = ReqString("Lastname");
 			NickName = ReqString("Nickname");
 			PhoneNumber = ReqString("Phonenumber");
 			DarkestSecrets = ReqString("Darkest Secrets");
-			if ()
 			if (index == 8)
 			{
 				index = 0;
@@ -112,7 +103,7 @@ void	ReadIpnut()
 				phonebook.set_count(index);
 		}
 		else if (input == "SEARCH")
-			SearchFT(phonebook);
+			phonebook.SearchFT();
 		else if (input.empty())
 		{
 			if (!std::getline(std::cin, input))
@@ -124,6 +115,8 @@ void	ReadIpnut()
 
 int main(void)
 {
+	PhoneBook	phonebook;
+	
 	std::cout << "Hello to my awesome PhoneBook\n";
-	ReadIpnut();
+	ReadIpnut(phonebook);
 }

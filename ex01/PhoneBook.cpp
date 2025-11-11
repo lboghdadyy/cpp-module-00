@@ -43,6 +43,28 @@ void    PhoneBook::announce()
     std::cout << std::endl;
 }
 
+void	PhoneBook::SearchFT()
+{
+	int			input_i;
+	std::string input;
+
+	if (this->count == -1)
+	{
+		std::cout << "No contact yet !!!\n";
+		return ;
+	}
+	this->announce();
+	DisplayReq("Select index : ");
+	std::getline(std::cin, input);
+	input_i = asciitoint(input);
+	if (input_i > 7 || input_i < 0 || (input_i >= this->count))
+	{
+		std::cout << "invalid index\n";
+		return ;
+	}
+	this->GetInfo(input_i);
+}
+
 void    PhoneBook::GetInfo(int index)
 {
     this->contacts[index].FullDetails();
